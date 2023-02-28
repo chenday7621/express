@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    body{
+      background: url("./img/bg9.jfif");
+      width: 100%;
+      background-attachment: fixed;
+      background-size: 100% 100%;
+    }
+    #main1,#main5,#main3,#main4{
+      background-color: rgba(255,255,255,0.05);
+      border-radius: 30px;
+      box-shadow: 0 0 10px rgb(129, 192, 224) inset,0 0 20px rgb(0,153,184);
+    }
+    #main1{
+      width: 500px;
+      height: 300px;
+      position: fixed;
+      top: 33px;
+      left: 20px;
+      color: #A6A6A6;
+    }
+    #main2{
+      width: 500px;
+      height: 330px;
+      position: fixed;
+      top: 5px;
+      left: 550px;
+    }
+    #main3{
+      width: 450px;
+      height: 330px;
+      position: fixed;
+      right: 20px;
+      top: 10px;
+    }
+    #main4{
+      width: 620px;
+      height: 350px;
+      position: fixed;
+      left: 20px;
+      bottom: 25px;
+    }
+    #main5{
+      width: 850px;
+      height: 350px;
+      position: absolute;
+      bottom: 25px;
+      right: 20px;
+    }
+    #btn{
+      text-decoration: none;
+      display: block;
+      width: 120px;
+      height: 40px;
+      font-size: 20px;
+      color: rgba(252, 252, 250,0.7);
+      text-align: center;
+      line-height: 30px;
+      position: fixed;
+      top: 4px;
+    }
+    #btn:hover{
+      color: rgb(252, 252, 250);
+    }
+    a{
+      text-decoration: none;
+    }
+    li{
+      list-style: none;
+    }
+    #main1 li:hover{
+      background-color: rgba(166, 166, 166,0.5);
+    }
+    #main1 li{
+      height: 30px;
+    }
+    li a{
+      color: #A6A6A6;
+    }
+    li a:hover{
+      color: rgba(129, 192, 224);
+    }
+    #main1 h1{
+      margin-left: 20px;
+    }
+  </style>
+</head>
+<body>
+<div>
+  <a href="index.html" id="btn"><返回主页</a>
+  <div id="main1">
+    <h1>最新研究文章</h1>
+    <ul>
+      <li><a href="https://zhuanlan.zhihu.com/p/101296334" target="_blank">2019 中国快递包装废弃物回收研究报告   发布于2020-01-06 </a></li>
+      <li><a href="https://zhuanlan.zhihu.com/p/101296334" target="_blank">2019 中国快递包装废弃物回收研究报告   发布于2020-01-06 </a></li>
+      <li><a href="https://zhuanlan.zhihu.com/p/101296334" target="_blank">2019 中国快递包装废弃物回收研究报告   发布于2020-01-06 </a></li>
+      <li><a href="https://zhuanlan.zhihu.com/p/101296334" target="_blank">2019 中国快递包装废弃物回收研究报告   发布于2020-01-06 </a></li>
+      <li><a href="http://www.chinaqking.com/yc/2019/2097179.html" target="_blank">“互联网+”在校园快递包装回收的应用  发布于2019-12-06</a></li>
+      <li><a href="http://www.chinaqking.com/yc/2019/2097179.html" target="_blank">“互联网+”在校园快递包装回收的应用  发布于2019-12-06</a></li>
+    </ul>
+  </div>
+  <div id="main2"></div>
+  <div id="main3"></div>
+  <div id="main4"></div>
+  <div id="main5"></div>
+</div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.4.1/echarts.min.js"></script>
+<!--<script src="./js/china.js"></script>-->
+<script>
+  var chartDom2 = document.getElementById('main2');
+  var myChart2 = echarts.init(chartDom2);
+  var option2;
+
+  option2 = {
+    tooltip: {
+      trigger: 'item'
+    },
+    legend: {
+      top: '5%',
+      left: 'auto',
+      // orient: 'vertical',
+      height:'80',
+      textStyle:{
+        color:'#fff'
+      }
+    },
+    series: [
+      {
+        name: 'Access From',
+        type: 'pie',
+        radius: ['40%', '70%'],
+        avoidLabelOverlap: false,
+        label: {
+          show: false,
+          position: 'center'
+        },
+        emphasis: {
+          label: {
+            show: true,
+            fontSize: 40,
+            fontWeight: 'bold'
+          }
+        },
+        labelLine: {
+          show: false
+        },
+        data: [
+          { value: 0.44, name: '瓦楞纸箱' },
+          { value: 0.335, name: '塑料袋' },
+          { value: 0.095, name: '套装纸箱' },
+          { value: 0.051, name: '文件袋' },
+          { value: 0.041, name: '珠光袋' },
+          { value: 0.029, name: '编织袋' },
+          { value: 0.009, name: '其他' },
+        ]
+      }
+    ]
+  };
+
+  myChart2.setOption(option2);
+
+</script>
+<script>
+  var chartDom3 = document.getElementById('main3');
+  var myChart3 = echarts.init(chartDom3);
+  var option3;
+
+  option3 = {
+    title: {
+      text: '各包装材料碳排放',
+      subtext:"单位：gCO2/g",
+      textStyle: {
+        color:'rgb(166, 166, 166)'
+      },
+      left:'5%',
+      top:'5%',
+    },
+    legend: {
+      data: ['原材料排放', '生产过程'],
+      orient:'vertical',
+      top:"80%",
+      left:'3%',
+      textStyle:{color:'#ccc'}
+
+    },
+    radar: {
+      // shape: 'circle',
+      indicator: [
+        { name: '运单', max: 1.87 },
+        { name: '快递封套', max: 2.53 },
+        { name: '瓦楞纸箱', max: 1.14 },
+        { name: '塑料薄膜包装袋', max: 3.24 },
+        { name: '塑料薄膜包装袋', max: 2.51 },
+        { name: '透明胶带', max: 2.77 }
+      ]
+    },
+    series: [
+      {
+        name: '原材料排放 vs 生产过程',
+        type: 'radar',
+        data: [
+          {
+            value: [1.5, 2.52, 0.88, 2.68, 1.97, 1.97],
+            name: '原材料排放'
+          },
+          {
+            value: [0.37, 0.008, 0.26, 0.56, 0.537, 0.795],
+            name: '生产过程'
+          }
+        ]
+      }
+    ]
+  };
+
+  myChart3.setOption(option3);
+
+</script>
+<script>
+  var chartDom4 = document.getElementById('main4');
+  var myChart4 = echarts.init(chartDom4);
+  var option4;
+
+  option4 = {
+    title:{
+      text: 'Gradient Stacked Area Chart',
+      textStyle: {
+        color:'rgb(166, 166, 166)'
+      },
+      left:'center',
+      top:'5%',
+    },
+    xAxis: {
+      type: 'category',
+      data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+    },
+    yAxis: {
+      type: 'value'
+    },
+    series: [
+      {
+        data: [120, 200, 150, 80, 70, 110, 130],
+        type: 'bar',
+        showBackground: true,
+        colorBy: "series"
+      }
+    ]
+  };
+
+  myChart4.setOption(option4);
+
+</script>
+<script>
+  var chartDom5 = document.getElementById('main5');
+  var myChart5 = echarts.init(chartDom5);
+  var option5;
+
+  option5 = {
+    color: ['#80FFA5', '#00DDFF', '#37A2FF', '#FF0087', '#FFBF00'],
+    title: {
+      text: 'Gradient Stacked Area Chart',
+      textStyle: {
+        color:'rgb(166, 166, 166)'
+      },
+      left:'5%',
+      top:'5%',
+    },
+    tooltip: {
+      trigger: 'axis',
+      axisPointer: {
+        type: 'cross',
+        label: {
+          backgroundColor: '#6a7985'
+        }
+      }
+    },
+    legend: {
+      data: ['Line 1', 'Line 2', 'Line 3', 'Line 4', 'Line 5'],
+      textStyle: {
+        color:'rgb(166, 166, 166)'
+      },
+      left:'45%',
+      top:'5%',
+    },
+    toolbox: {
+      feature: {
+        saveAsImage: {}
+      }
+    },
+    grid: {
+      left: '3%',
+      right: '4%',
+      bottom: '3%',
+      containLabel: true
+    },
+    xAxis: [
+      {
+        type: 'category',
+        boundaryGap: false,
+        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+      }
+    ],
+    yAxis: [
+      {
+        type: 'value'
+      }
+    ],
+    series: [
+      {
+        name: 'Line 1',
+        type: 'line',
+        stack: 'Total',
+        smooth: true,
+        lineStyle: {
+          width: 0
+        },
+        showSymbol: false,
+        areaStyle: {
+          opacity: 0.8,
+          color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+            {
+              offset: 0,
+              color: 'rgb(128, 255, 165)'
+            },
+            {
+              offset: 1,
+              color: 'rgb(1, 191, 236)'
+            }
+          ])
+        },
+        emphasis: {
+          focus: 'series'
+        },
+        data: [140, 232, 101, 264, 90, 340, 250]
+      },
+      {
+        name: 'Line 2',
+        type: 'line',
+        stack: 'Total',
+        smooth: true,
+        lineStyle: {
+          width: 0
+        },
+        showSymbol: false,
+        areaStyle: {
+          opacity: 0.8,
+          color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+            {
+              offset: 0,
+              color: 'rgb(0, 221, 255)'
+            },
+            {
+              offset: 1,
+              color: 'rgb(77, 119, 255)'
+            }
+          ])
+        },
+        emphasis: {
+          focus: 'series'
+        },
+        data: [120, 282, 111, 234, 220, 340, 310]
+      },
+      {
+        name: 'Line 3',
+        type: 'line',
+        stack: 'Total',
+        smooth: true,
+        lineStyle: {
+          width: 0
+        },
+        showSymbol: false,
+        areaStyle: {
+          opacity: 0.8,
+          color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+            {
+              offset: 0,
+              color: 'rgb(55, 162, 255)'
+            },
+            {
+              offset: 1,
+              color: 'rgb(116, 21, 219)'
+            }
+          ])
+        },
+        emphasis: {
+          focus: 'series'
+        },
+        data: [320, 132, 201, 334, 190, 130, 220]
+      },
+      {
+        name: 'Line 4',
+        type: 'line',
+        stack: 'Total',
+        smooth: true,
+        lineStyle: {
+          width: 0
+        },
+        showSymbol: false,
+        areaStyle: {
+          opacity: 0.8,
+          color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+            {
+              offset: 0,
+              color: 'rgb(228, 103, 101)'
+            },
+            {
+              offset: 1,
+              color: 'rgb(135, 0, 157)'
+            }
+          ])
+        },
+        emphasis: {
+          focus: 'series'
+        },
+        data: [220, 402, 231, 134, 190, 230, 120]
+      },
+      {
+        name: 'Line 5',
+        type: 'line',
+        stack: 'Total',
+        smooth: true,
+        lineStyle: {
+          width: 0
+        },
+        showSymbol: false,
+        label: {
+          show: true,
+          position: 'top'
+        },
+        areaStyle: {
+          opacity: 0.8,
+          color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+            {
+              offset: 0,
+              color: 'rgb(255, 191, 0)'
+            },
+            {
+              offset: 1,
+              color: 'rgb(224, 62, 76)'
+            }
+          ])
+        },
+        emphasis: {
+          focus: 'series'
+        },
+        data: [220, 302, 181, 234, 210, 290, 150]
+      }
+    ]
+  };
+
+  myChart5.setOption(option5);
+
+</script>
+
+</html>

@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            /*background-image: url("./img/bg6.jpg");*/
+            background-image: url("./img/bg4.png");
+            background-attachment: fixed;
+            background-size: 100% 100%;
+        }
+        #tab{
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            width: 260px;
+            height: 120px;
+            position: fixed;
+            top:30px;
+            left: 600px;
+        }
+        #num1{
+            font-size: 55px;
+            color: yellow;
+            position: fixed;
+            top: 30px;
+            left: 610px;
+        }
+        #title{
+            font-size: 25px;
+            color: #A6A6A6;
+            position: relative;
+            top: 75px;
+            left: 10px;
+        }
+        #main1,#main2,#main3,#main4{
+            background-color: rgba(255,255,255,0.07);
+            border-radius: 30px;
+            box-shadow: 0 0 10px rgb(0,153,184) inset,0 0 20px rgb(0,123,144);
+        }
+        #main1{
+            width: 430px;
+            height: 320px;
+            position: fixed;
+            top: 30px;
+            left: 45px;
+        }
+        #main2{
+            width: 430px;
+            height: 320px;
+            position: fixed;
+            left: 45px;
+            bottom: -55px;
+        }
+        #main3{
+            width: 450px;
+            height: 320px;
+            position: fixed;
+            right: 40px;
+            top: 40px;
+        }
+        #main4{
+            width: 500px;
+            height: 320px;
+            position: fixed;
+            right: 40px;
+            top: 380px;
+        }
+        #main5{
+            width: 690px;
+            height: 690px;
+            position: absolute;
+            top: 80px;
+            left: 400px;
+        }
+        a{
+            text-decoration: none;
+            display: block;
+            width: 120px;
+            height: 40px;
+            font-size: 20px;
+            color: rgba(252, 252, 250,0.7);
+            text-align: center;
+            line-height: 30px;
+            position: fixed;
+            top: 4px;
+        }
+        a:hover{
+            color: rgb(252, 252, 250);
+        }
+    </style>
+</head>
+<body>
+<div>
+    <a href="index.html"><返回主页</a>
+    <div id="tab">
+        <span id="num1">14316.71</span>
+        <span id="title">全国快递业务总量(亿)</span>
+    </div>
+    <div id="main1"></div>
+    <div id="main2"></div>
+    <div id="main3"></div>
+    <div id="main4"></div>
+    <div id="main5"></div>
+</div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.4.1/echarts.min.js"></script>
+<script src="./js/china.js"></script>
+<script>
+    var chartDom1 = document.getElementById('main1');
+   var myChart1 = echarts.init(chartDom1);
+    var option1;
+
+    function randomData1() {
+        now = new Date(+now + oneDay);
+        value = value + Math.random() * 21 - 10;
+        return {
+            name: now.toString(),
+            value: [
+                [now.getFullYear(), now.getMonth() + 1, now.getDate()].join('/'),
+                Math.round(value)
+            ]
+        };
+    }
+    let data1 = [];
+    let now = new Date(1997, 9, 3);
+    let oneDay = 24 * 3600 * 1000;
+    let value = Math.random() * 1000;
+    for (var i = 0; i < 1000; i++) {
+        data1.push(randomData1());
+    }
+    option1 = {
+        title: {
+            text: '全国快递行业收入发展',
+            textStyle: {
+                fontSize: 23,
+                color: "rgba(255,250,255,0.8)"
+            },
+            right:120
+        },
+        tooltip: {
+            trigger: 'axis',
+            formatter: function (params) {
+                params = params[0];
+                var date = new Date(params.name);
+                return (
+                    date.getDate() +
+                    '/' +
+                    (date.getMonth() + 1) +
+                    '/' +
+                    date.getFullYear() +
+                    ' : ' +
+                    params.value[1]
+                );
+            },
+            axisPointer: {
+                animation: false
+            }
+        },
+        xAxis: {
+            type: 'time',
+            splitLine: {
+                show: false
+            },
+            axisLine: {
+                lineStyle: {
+                    color: "#fff"
+                }
+            }
+        },
+        yAxis: {
+            type: 'value',
+            boundaryGap: [0, '100%'],
+            splitLine: {
+                show: false
+            },
+            axisLine: {
+                lineStyle: {
+                    color: "#fff"
+                }
+            }
+        },
+        series: [
+            {
+                name: 'Fake Data',
+                type: 'line',
+                showSymbol: false,
+                data: data1,
+                color:"rgb(134, 173, 255)"
+            }
+        ]
+    };
+    setInterval(function () {
+        for (var i = 0; i < 5; i++) {
+            data1.shift();
+            data1.push(randomData1());
+        }
+        myChart1.setOption({
+            series: [
+                {
+                    data: data1
+                }
+            ]
+        });
+    }, 1000);
+
+    myChart1.setOption(option1);
+
+</script>
+<script>
+    var chartDom2 = document.getElementById('main2');
+    let myChart2 = echarts.init(chartDom2);
+    let option2;
+
+    option2 = {
+        title: {
+            text: '全国前五快递公司组成',
+            left: 'center',
+            top: 20,
+            textStyle: {
+                color: '#ccc'
+            }
+        },
+        tooltip: {
+            trigger: 'item'
+        },
+        visualMap: {
+            show: false,
+            min: 80,
+            max: 600,
+            inRange: {
+                color:"rgb(88, 203, 255)",
+                colorLightness: [0, 1]
+            }
+        },
+        series: [
+            {
+                name: 'Access From',
+                type: 'pie',
+                radius: '55%',
+                center: ['50%', '50%'],
+                data: [
+                    { value: 335, name: '中国邮政' },
+                    { value: 310, name: '中通' },
+                    { value: 274, name: '韵达' },
+                    { value: 235, name: '圆通' },
+                    { value: 400, name: '顺丰' },
+                ].sort(function (a, b) {
+                    return a.value - b.value;
+                }),
+                roseType: 'radius',
+                label: {
+                    color: 'rgba(255, 255, 255, 0.7)'
+                },
+                labelLine: {
+                    lineStyle: {
+                        color: 'rgba(255, 255, 255, 0.3)'
+                    },
+                    smooth: 0.2,
+                    length: 10,
+                    length2: 20
+                },
+                itemStyle: {
+                    color: '',
+                    shadowBlur: 200,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                },
+                animationType: 'scale',
+                animationEasing: 'elasticOut',
+                animationDelay: function (idx) {
+                    return Math.random() * 200;
+                }
+            }
+        ]
+    };
+
+    myChart2.setOption(option2);
+</script>
+<script>
+    var chartDom3 = document.getElementById('main3');
+    var myChart3 = echarts.init(chartDom3);
+    var option3;
+
+    // prettier-ignore
+    let dataAxis = ['2008', '2010', '2012', '2014', '2016', '2018', '2020', '2022'];
+    // prettier-ignore
+    let data3 = [1401.7, 1985.2, 2036.7, 3696.1, 7397.1, 12345, 21053.2, 14316.71];
+    let yMax = 500;
+    let dataShadow = [];
+    for (let i = 0; i < data3.length; i++) {
+        dataShadow.push(yMax);
+    }
+    option3 = {
+        title: {
+            text: '近年中国快递业务发展',
+            left:"center",
+            top:"2%",
+            textStyle: {
+                fontSize: 23,
+                color: "rgba(255,250,255,0.8)"
+            },
+            subtextStyle: {
+                fontSize: 12,
+                color: "rgba(255,250,255,0.6)"
+            },
+            subtext: '全国快递业务总量   单位：亿元'
+        },
+        xAxis: {
+            data: dataAxis,
+            // type:'category',
+            // data: ['2000', '2000', '2000', '2000', '2000', '2000', '2000', '2000', '2000', '2000', '2000' ],
+            axisLabel: {
+                inside: true,
+                color: '#fff'
+            },
+            axisTick: {
+                show: false
+            },
+            axisLine: {
+                show: false
+            },
+            z: 10
+        },
+        yAxis: {
+            axisLine: {
+                show: false
+            },
+            axisTick: {
+                show: false
+            },
+            axisLabel: {
+                color: '#fff'
+            }
+        },
+        dataZoom: [
+            {
+                type: 'inside'
+            }
+        ],
+        series: [
+            {
+                type: 'bar',
+                showBackground: true,
+                itemStyle: {
+                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                        { offset: 0, color: '#83bff6' },
+                        { offset: 0.5, color: '#188df0' },
+                        { offset: 1, color: '#188df0' }
+                    ])
+                },
+                emphasis: {
+                    itemStyle: {
+                        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                            { offset: 0, color: '#2378f7' },
+                            { offset: 0.7, color: '#2378f7' },
+                            { offset: 1, color: '#83bff6' }
+                        ])
+                    }
+                },
+                data: data3
+            },
+        ]
+    };
+    // Enable data zoom when user click bar.
+    const zoomSize = 6;
+    myChart3.on('click', function (params) {
+        console.log(dataAxis[Math.max(params.dataIndex - zoomSize / 2, 0)]);
+        myChart3.dispatchAction({
+            type: 'dataZoom',
+            startValue: dataAxis[Math.max(params.dataIndex - zoomSize / 2, 0)],
+            endValue:
+                dataAxis[Math.min(params.dataIndex + zoomSize / 2, data.length - 1)]
+        });
+    });
+
+    myChart3.setOption(option3);
+</script>
+<script>
+    var chartDom4 = document.getElementById('main4');
+    var myChart4 = echarts.init(chartDom4);
+    var option4;
+
+    option4 = {
+        dataset: {
+            source: [
+                // [24270, 14740, 15860, 16880, 6410, 12550, 3250, 2500, 600, 270, 990]
+                // ['淘宝', '京东', '抖音', '拼多多', '天猫', '小红书', '什么值得买', '阿里巴巴', '苏宁易购', '当当网', '大众点评' ]
+                ['score', 'amount', 'product'],
+                [90, 24270, '淘宝'],
+                [76, 14740, '京东'],
+                [80, 15860, '抖音'],
+                [85, 16880, '拼多多'],
+                [64, 6410, '天猫'],
+                [70, 12550, '小红书'],
+                [49, 3250, '什么值得买'],
+                [37, 2500, '阿里巴巴'],
+                // [32.7, 600, '苏宁易购'],
+                // [32.7, 270, '当当网'],
+                // [32.7, 990, '大众点评'],
+            ]
+        },
+        grid: { containLabel: true },
+        title:{
+            text: '主流网购平台',
+            left:"center",
+            top:"2%",
+            textStyle: {
+                fontSize: 23,
+                color: "rgba(255,250,255,0.8)",
+
+            },
+            subtextStyle: {
+                fontSize: 12,
+                color: "rgba(255,250,255,0.6)"
+            },
+            subtext: '中国主流网购平台月均访问量   单位：万'
+        },
+        xAxis: {
+            // name: 'amount',
+            axisLine: {
+                lineStyle: {
+                    color: "#fff"
+                }
+            }
+            },
+        yAxis: { type: 'category',
+            axisLine: {
+                lineStyle: {
+                    color: "#fff"
+                }
+            }
+        },
+        visualMap: {
+            orient: 'horizontal',
+            left: 'center',
+            min: 10,
+            max: 100,
+            text: ['High Score', 'Low Score'],
+            // Map the score column to color
+            dimension: 0,
+            inRange: {
+                color: [ 'rgb(255, 255, 255)' ,'rgb(199, 154, 198)','rgb(89, 74, 168)']
+            }
+        },
+        series: [
+            {
+                type: 'bar',
+                encode: {
+                    // Map the "amount" column to X axis.
+                    x: 'amount',
+                    // Map the "product" column to Y axis
+                    y: 'product'
+                }
+            }
+        ]
+    };
+
+     myChart4.setOption(option4);
+
+</script>
+<script>
+    //中国地图
+    function randomData() {
+        return Math.round(Math.random()*500);
+    }
+    var chartDom5 = document.getElementById('main5');
+    var chinaMapChart = echarts.init(chartDom5);
+    var optionChinaMap
+
+    optionChinaMap = {
+        tooltip : {
+            trigger: 'item'
+        },
+        legend: {
+            orient: 'horizontal',//图例的排列方向
+            textStyle: {color:'#fff'},
+            x:'left',//图例的位置
+            y:'20',
+
+            data:['全国数据']
+        },
+
+        visualMap: {//颜色的设置  dataRange
+            textStyle: {color:'#fff'},
+            x: '100',
+            y: '420',
+            splitList: [
+                {start: 2000000},{start: 500000, end: 2000000},
+                {start: 200000, end: 500000},{start: 10000, end: 200000},
+                {start: 10000, end: 100000},{start: 0, end: 10000},
+            ],
+            // text:['高','低'],// 文本，默认为数值文本
+            // color: ['#65A2D9', '#E09107', '#A3E00B']
+            color: ['rgb(109, 31, 148)', 'rgb(96, 51, 182)', 'rgb(96, 51, 182)','rgb(121, 95, 250)', 'rgb(102, 139, 255)', 'rgb(88, 203, 255)']
+        },
+        // roamController: {//控制地图的上下左右放大缩小
+        //     show: true,
+        //     x: 'right',
+        //     mapTypeControl: {
+        //         'china': true
+        //     }
+        // },
+        series : [
+            {
+                name: '全国数据',
+                type: 'map',
+                mapType: 'china',
+                zoom: 1.1,
+                roam: false,//是否开启鼠标缩放和平移漫游
+                itemStyle:{//地图区域的多边形 图形样式
+                    normal:{//是图形在默认状态下的样式
+                        label:{
+                            show: true,
+                            textStyle: {color: "rgb(249, 249, 249)"}
+                        }
+                    },
+                    emphasis:{//是图形在高亮状态下的样式,比如在鼠标悬浮或者图例联动高亮时
+                        label:{show:true},
+                    }
+                },
+                top:"100",//组件距离容器的距离
+                data:[
+                    {name: '北京',value: '221030' },{name: '天津',value: '123390' },
+                    {name: '上海',value: '374137' },{name: '重庆',value: '97936' },
+                    {name: '河北',value: '506015' },{name: '河南',value: '435552' },
+                    {name: '云南',value: '84190' },{name: '辽宁',value: '164328' },
+                    {name: '黑龙江',value: '60491' },{name: '湖南',value: '197803' },
+                    {name: '安徽',value: '312664' },{name: '山东',value: '559785' },
+                    {name: '新疆',value: '16185' },{name: '江苏',value: '860653' },
+                    {name: '浙江',value: '2278148' },{name: '江西',value: '160091' },
+                    {name: '湖北',value: '269341' },{name: '广西',value: '102758' },
+                    {name: '甘肃',value: '18457' },{name: '山西',value: '78131' },
+                    {name: '内蒙古',value: '26086' },{name: '陕西',value: '111806' },
+                    {name: '吉林',value: '62197' },{name: '福建',value: '415012' },
+                    {name: '贵州',value: '39787' },{name: '广东',value: '2945749' },
+                    {name: '青海',value: '3686' },{name: '西藏',value: '1485' },
+                    {name: '四川',value: '278269' },{name: '宁夏',value: '9963' },
+                    {name: '海南',value: '14503' },{name: '台湾',value: randomData() },
+                    {name: '香港',value: randomData() },{name: '澳门',value: randomData() }
+                ]
+            }
+        ],
+    };
+
+    chinaMapChart.setOption(optionChinaMap, true);
+</script>
+</html>
