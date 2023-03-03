@@ -2,11 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Title</title>
     <style>
+        /**{*/
+        /*    border:3px solid white!important;*/
+        /*}*/
         body{
             background-image: url("./img/bg5.jpg");
-            /*background-image: url("./img/bg2.jfif");*/
             background-attachment: fixed;
             background-size: 100% 100%;
         }
@@ -15,60 +18,70 @@
         /*    border-radius: 30px;*/
         /*}*/
         #main1{
-            width: 530px;
-            height: 520px;
-            position: fixed;
-
-            top: 60px;
-            left: 500px;
+            width: 35vw;
+            height: 35vw;
+            margin: 6% auto 8%;
         }
         span{
-            /*font-size: 70px;*/
-            color: #A6A6A6;
+            color: rgba(101, 191, 232,0.97);
+            /*position: fixed;*/
+            display: block;
+            /*width: auto;*/
+            /*height: 5rem;*/
+            text-align: center;
+            margin: auto;
             position: fixed;
-
-            top: 10px;
-            left: 320px;
-
-            font-size:80px; /*设置字体大小*/
-            font-weight:600; /*设置字体粗细*/
-            text-shadow:1px 0px rgb(166, 166, 160), 1px 2px rgb(160, 160, 150), 3px 1px rgb(160, 160, 150),
-            2px 3px rgb(100, 100, 100), 4px 2px rgb(80, 80, 80), 4px 4px rgb(100, 100, 100),
-            5px 3px rgb(80, 80, 80), 5px 5px rgb(90, 90, 90), 7px 4px rgb(60, 60, 50),
-            6px 6px rgb(100, 100, 100), 8px 5px rgb(80, 80, 80),  7px 7px rgb(100, 100, 100),
-            9px 6px rgb(80, 80, 80), 9px 8px rgb(50, 50, 50), 11px 7px rgb(60, 60, 50)/*设置文字阴影*/
+            top: 3%;
+            left: 21%;
+            right: 21%;
+            font-size:5vw; /*设置字体大小*/
+            font-weight:1000; /*设置字体粗细*/
+            /*text-shadow: 0 0 10px rgb(0,153,184) ,0 0 20px rgb(0,123,144);*/
+            font-family: '等线';
         }
         a{
+            font-family: '等线';
             display: block;
-            width: 280px;
-            height: 100px;
-            background-color: rgba(255,255,255,0.1);
-            color: #A6A6A6;
+            width: 19vw;
+            height: 5.3vw;
+            /*background-color: rgba(255,255,255,0.1);*/
+            border:1px solid rgba(131, 201, 252,0.97);
+            color: rgba(101, 191, 232,0.97);
             text-decoration: none;
-            line-height: 100px;
-            font-size: 45px;
+            line-height: 5vw;
+            font-size: 2.5vw;
             font-weight: 550;
-            border-radius: 15px;
+            border-radius: 1rem;
+            box-shadow: 0 0 20px rgb(0,153,184) inset,0 0 20px rgb(0,123,144);
         }
         a:hover{
-            background-color: rgba(255,255,255,0.3);
-            color: black;
+            /*background-color: rgba(255,255,255,0.3);*/
+            color: white;
         }
         #btns{
             display: flex;
             flex-direction: row;
             justify-content: space-between;
-            width: 720px;
+            width: 50%;
+            /*position: fixed;*/
+            /*top:80%;*/
+            /*right: 20%;*/
+            text-align: center;
+            margin: 0 auto;
             position: fixed;
-            top: 500px;
-            right: 400px;
+            top: 80%;
+            left: 21%;
+            right: 21%;
+        }
+        .items{
+            text-align: center;
         }
     </style>
 </head>
 <body>
 <div>
-    <div id="main1"></div>
-    <div class="titles">
+    <div class="items">
+        <div id="main1"></div>
         <span>快递包装回收可视化平台</span>
         <div id="btns">
             <a href="develop.html">快递行业发展</a>
@@ -90,6 +103,7 @@
     var chartDom = document.getElementById('main1');
     var myChart = echarts.init(chartDom);
     var option;
+    window.addEventListener('resize',() => { myChart.resize(); });
 
     option = {
         // backgroundColor: '#000',
@@ -118,7 +132,7 @@
                 {
                     type: 'overlay',
                     texture: ('./img/clouds.png'),
-                    shading: 'lambert',
+                    // shading: 'lambert',
                     distance: 5
                 }
             ]
