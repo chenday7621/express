@@ -2,7 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>快递行业发展</title>
+    <meta name="keywords" content="快递行业发展,网购,快递业务" />
+    <meta name="description "content="近年中国快递服务业业务量保持快速增长态势，快递行业发展迅速，各个电商网购平台涌现" />
     <style>
         /**{*/
         /*    border:3px solid white!important;*/
@@ -143,24 +146,6 @@
    var myChart1 = echarts.init(chartDom1);
     var option1;
     window.addEventListener('resize',() => { myChart1.resize(); });
-    function randomData1() {
-        now = new Date(+now + oneDay);
-        value = value + Math.random() * 21 - 10;
-        return {
-            name: now.toString(),
-            value: [
-                [now.getFullYear(), now.getMonth() + 1, now.getDate()].join('/'),
-                Math.round(value)
-            ]
-        };
-    }
-    let data1 = [];
-    let now = new Date(1997, 9, 3);
-    let oneDay = 24 * 3600 * 1000;
-    let value = Math.random() * 1000;
-    for (var i = 0; i < 1000; i++) {
-        data1.push(randomData1());
-    }
     option1 = {
         title: {
             text: '全国快递行业收入发展',
@@ -168,76 +153,46 @@
                 fontSize: 23,
                 color: "#fff"
             },
+            subtextStyle: {
+                fontSize: 12,
+                color: "rgba(255,250,255,0.6)"
+            },
+            subtext: '全国快递行业总收入   单位：亿元',
             // right:120,
             top:10,
             left:"center",
         },
-        tooltip: {
-            trigger: 'axis',
-            formatter: function (params) {
-                params = params[0];
-                var date = new Date(params.name);
-                return (
-                    date.getDate() +
-                    '/' +
-                    (date.getMonth() + 1) +
-                    '/' +
-                    date.getFullYear() +
-                    ' : ' +
-                    params.value[1]
-                );
-            },
-            axisPointer: {
-                animation: false
-            }
-        },
         xAxis: {
-            type: 'time',
-            splitLine: {
-                show: false
-            },
-            axisLine: {
-                lineStyle: {
-                    color: "#fff"
+            type: 'category',
+            data: ['2014', '2015', '2016', '2017', '2018' ,'2019', '2020'],
+                axisLine: {
+                    lineStyle: {
+                        color: "#fff"
+                    }
                 }
-            }
         },
         yAxis: {
             type: 'value',
-            boundaryGap: [0, '100%'],
+                axisLine: {
+                    lineStyle: {
+                        color: "#fff"
+                    }
+                },
             splitLine: {
                 show: false
-            },
-            axisLine: {
-                lineStyle: {
-                    color: "#fff"
-                }
             }
         },
         series: [
             {
-                name: 'Fake Data',
+                data: [ 2045.4, 2769.6, 3974.4,4957.1, 6038.4, 7497.8, 8795.4],
                 type: 'line',
-                showSymbol: false,
-                data: data1,
                 color:"rgb(134, 173, 255)"
             }
-        ]
-    };
-    setInterval(function () {
-        for (var i = 0; i < 5; i++) {
-            data1.shift();
-            data1.push(randomData1());
+        ],
+        tooltip: {
+            trigger: 'axis'
         }
-        myChart1.setOption({
-            series: [
-                {
-                    data: data1
-                }
-            ]
-        });
-    }, 1000);
-
+    };
     myChart1.setOption(option1);
 
 </script>
@@ -552,9 +507,15 @@
                     },
                     emphasis:{//是图形在高亮状态下的样式,比如在鼠标悬浮或者图例联动高亮时
                         label:{show:true,
-                            textStyle: {color: "#000"}
+                            // textStyle: {color: "#000"}
                         },
-                        areaColor:"rgba(251, 255, 20,0.95)"
+                        // areaColor:"rgba(229, 190, 94,0.85)",
+                        areaColor:"rgb(239,215,140)",
+
+                        shadowColor:"#000",
+                        shadowOffsetX:5,
+                        shadowBlur: 5
+
                         // itemStyle:{areaColor:"rgba(251, 255, 0)"}
                     }
                 },

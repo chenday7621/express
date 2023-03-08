@@ -2,7 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>包装回收现状</title>
+  <meta name="keywords" content="快递包装,回收,包装材料" />
+  <meta name="description "content="各种快递包装材料组成、对应的碳排放以及产生的垃圾量，可视化地展现快递包装废弃物治理现状" />
   <style>
     *{
         /*border:3px solid white!important;*/
@@ -286,11 +289,21 @@
         //x轴文字的配置
         show: true,
         interval: 0,//使x轴文字显示全
+      },
+      axisLine: {
+        lineStyle: {
+          color: "rgba(255,250,255,0.8)"
+        }
       }
 
     },
     yAxis: {
-      type: 'value'
+      type: 'value',
+      axisLine: {
+        lineStyle: {
+          color: "rgba(255,250,255,0.8)"
+        }
+      }
     },
     series: [
       {
@@ -313,7 +326,7 @@
   option5 = {
     color: ['#80FFA5', '#00DDFF', '#37A2FF', '#FF0087', '#FFBF00'],
     title: {
-      text: 'Gradient Stacked Area Chart',
+      text: '各类包装所含不同材料质量分布',
       textStyle: {
         color:'#fff'
       },
@@ -330,7 +343,7 @@
       }
     },
     legend: {
-      data: ['Line 1', 'Line 2', 'Line 3', 'Line 4', 'Line 5'],
+      data: ['瓦楞纸箱', '套装纸箱', '塑料袋', '编织袋', '泡沫箱'],
       textStyle: {
         color:'rgb(166, 166, 166)'
       },
@@ -352,7 +365,7 @@
       {
         type: 'category',
         boundaryGap: false,
-        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+        data: [ '透明胶带', '快递单纸', '泡沫塑料', '胶带纸芯','编织袋塑料']
       }
     ],
     yAxis: [
@@ -362,7 +375,7 @@
     ],
     series: [
       {
-        name: 'Line 1',
+        name: '瓦楞纸箱',
         type: 'line',
         stack: 'Total',
         smooth: true,
@@ -386,10 +399,10 @@
         emphasis: {
           focus: 'series'
         },
-        data: [140, 232, 101, 264, 90, 340, 250]
+        data: [ 2.7, 4.5, 16.8, 0.22,0]
       },
       {
-        name: 'Line 2',
+        name: '套装纸箱',
         type: 'line',
         stack: 'Total',
         smooth: true,
@@ -413,10 +426,11 @@
         emphasis: {
           focus: 'series'
         },
-        data: [120, 282, 111, 234, 220, 340, 310]
+        data: [ 2.7, 4.5, 47, 0.22,0]
+
       },
       {
-        name: 'Line 3',
+        name: '塑料袋',
         type: 'line',
         stack: 'Total',
         smooth: true,
@@ -440,10 +454,11 @@
         emphasis: {
           focus: 'series'
         },
-        data: [320, 132, 201, 334, 190, 130, 220]
+        data: [ 2.7, 4.5, 39, 0.22,0]
       },
+
       {
-        name: 'Line 4',
+        name: '编织袋',
         type: 'line',
         stack: 'Total',
         smooth: true,
@@ -467,10 +482,10 @@
         emphasis: {
           focus: 'series'
         },
-        data: [220, 402, 231, 134, 190, 230, 120]
+        data:  [ 2.7, 4.5, 39, 0.22,46]
       },
       {
-        name: 'Line 5',
+        name: '泡沫箱',
         type: 'line',
         stack: 'Total',
         smooth: true,
@@ -498,7 +513,7 @@
         emphasis: {
           focus: 'series'
         },
-        data: [220, 302, 181, 234, 210, 290, 150]
+        data: [2.7, 4.5, 39, 0.22,0]
       }
     ]
   };

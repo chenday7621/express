@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Title</title>
+    <title>快递包装回收可视化平台</title>
+    <meta name="keywords" content="快递包装,回收,数据可视化" />
+    <meta name="description "content="生态文明理念深入人心，急需解决快递包装废弃物对于环境的影响，将各方面数据可视化，直观地展现现状" />
     <style>
         /**{*/
         /*    border:3px solid white!important;*/
@@ -101,8 +103,10 @@
 
 <script>
     var chartDom = document.getElementById('main1');
-    var myChart = echarts.init(chartDom);
+    // var myChart = echarts.init(chartDom);
     var option;
+    let myChart = echarts.init(chartDom, null, {notMerge: true, lazyUpdate: true});
+
     window.addEventListener('resize',() => { myChart.resize(); });
 
     option = {
